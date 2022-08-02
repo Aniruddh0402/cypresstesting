@@ -7,6 +7,7 @@ describe('insta login page',()=>{
 
     })
 
+
     it('using invalid pass',()=>{
 
         cy.get(':nth-child(1) > ._9GP1n > .f0n8F > ._2hvTZ')
@@ -40,8 +41,28 @@ describe('insta login page',()=>{
         .click()
         .url().should('include','/accounts/password/reset/')
     })
-    
-    
 
-})
+    it('verify the message for invalid login',()=>{
+        
+        cy.get(':nth-child(1) > ._9GP1n > .f0n8F > ._2hvTZ')
+        .type('i_am_aniruddh10')
+    
+        cy.get(':nth-child(2) > ._9GP1n > .f0n8F > ._2hvTZ')
+        .type('hiahnjj')
+    
+        cy.get(':nth-child(3) > .sqdOP')
+        .click()
+    })
+    
+    
+    it('verify data in pass is asterick or bullet',()=>{
+        
+        cy.get(':nth-child(1) > ._9GP1n > .f0n8F > ._2hvTZ')
+        .type('i_am_aniruddh10')
+    
+        cy.get(':nth-child(2) > ._9GP1n > .f0n8F > ._2hvTZ')
+        .type('hiahnjj')
+    
+       })
+    })
 
