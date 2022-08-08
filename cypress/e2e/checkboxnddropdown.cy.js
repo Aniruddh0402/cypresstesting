@@ -28,12 +28,10 @@ describe('check nd drop', () => {
         cy.get('#checkbox3').uncheck().should('not.be.checked')
 
         cy.get('input[type=checkbox]')
-            .check(['Cricket','Movies', 'Hockey'])
+            .check(['Cricket', 'Movies', 'Hockey'])
 
 
     })
-
-
     it('Skills dropdown', () => {
 
         cy.get('#Skills')
@@ -41,9 +39,6 @@ describe('check nd drop', () => {
             .should('have.value', 'Android')
 
     })
-
-
-
     it('Languages multi select', () => {
 
         cy.get('#msdd').click()
@@ -54,12 +49,12 @@ describe('check nd drop', () => {
         cy.get('.ui-corner-all').contains('Italian').click()
 
     })
-
-
     it('select country searchable dropdown', () => {
 
         cy.get('[role=combobox]').click({ force: true })
         cy.get('.select2-search__field').type('Ind{enter}')
     })
+
+    
 
 })
