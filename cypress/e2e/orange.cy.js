@@ -2,7 +2,26 @@
 
 describe('orange hrm automate', () => {
 
-    it('login page', () => {
+    it('login using invalid credentials', () => {
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/')
+
+        cy.get('#txtUsername')
+            .type('Admin')
+
+        cy.get('#txtPassword')
+            .type('admin12')
+
+        cy.get('#btnLogin')
+            .click()
+            .url()
+            .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/dashboard')
+
+
+
+    })
+
+    it('login page with valid credentials', () => {
 
         cy.visit('https://opensource-demo.orangehrmlive.com/')
 
@@ -14,10 +33,12 @@ describe('orange hrm automate', () => {
 
         cy.get('#btnLogin')
             .click()
+            .url()
+            .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/dashboard')
 
 
     })
-    it('Assign Leave', () => {
+    it('validae Assign Leave page', () => {
 
         cy.get(':nth-child(1) > .quickLaunge > a')
             .click()
@@ -97,7 +118,7 @@ describe('orange hrm automate', () => {
             .click()
     })
 
-    it('Dashboard', () => {
+    it('click on Dashboard', () => {
         cy.get('#menu_dashboard_index > b')
             .click()
 
@@ -114,7 +135,7 @@ describe('orange hrm automate', () => {
             .should('include', '/index.php/dashboard')
     })
 
-    it('Leave list', () => {
+    it('validate Leave list page', () => {
 
         cy.get(':nth-child(2) > .quickLaunge > a > .quickLinkText')
             .click()
@@ -141,8 +162,75 @@ describe('orange hrm automate', () => {
         cy.get('#calToDate')
             .click()
 
-            cy.get('.ui-datepicker-month')
+        cy.get('.ui-datepicker-month')
             .select('Sep')
+
+        cy.get(':nth-child(3) > :nth-child(5) > .ui-state-default')
+            .click()
+
+        cy.get('#leaveList_chkSearchFilter_checkboxgroup_allcheck')
+            .should('not.be.checked')
+            .check()
+
+        cy.get('#leaveList_chkSearchFilter_1')
+            .should('be.checked')
+            .uncheck()
+
+        cy.get('#leaveList_txtEmployee_empName')
+            .type('oran{enter}')
+
+        cy.get('#leaveList_cmbSubunit')
+            .select('Engineering')
+            .should('have.value', '3')
+
+        cy.get('#leaveList_cmbWithTerminated')
+            .should('not.be.checked')
+            .check()
+
+        cy.get('#btnSearch')
+            .should('be.visible')
+            .click()
+    })
+
+    it('Back to Dashboard again', () => {
+        cy.get('#menu_dashboard_index > b')
+            .click()
+
+        cy.get('#txtUsername')
+            .type('Admin')
+
+        cy.get('#txtPassword')
+            .type('admin123')
+
+        cy.get('#btnLogin')
+            .click()
+
+            .url()
+            .should('include', '/index.php/dashboard')
+    })
+
+    it('validate Timesheets page', () => {
+
+        cy.get(':nth-child(3) > .quickLaunge > a > .quickLinkText')
+            .click()
+
+        cy.get('#txtUsername')
+            .type('Admin')
+
+        cy.get('#txtPassword')
+            .type('admin123')
+
+        cy.get('#btnLogin')
+            .click()
+
+        cy.get('#employee')
+            .type('oran{enter}')
+
+        cy.get('#btnView')
+            .click()
+
+            .url()
+            .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/time/createTimesheetForSubourdinate/employeeId/1')
     })
 
 
