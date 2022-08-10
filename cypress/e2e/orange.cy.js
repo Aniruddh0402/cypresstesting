@@ -2,7 +2,7 @@
 
 describe('orange hrm automate', () => {
 
-    it('login using invalid credentials', () => {
+    it('login using invalid pass', () => {
 
         cy.visit('https://opensource-demo.orangehrmlive.com/')
 
@@ -19,6 +19,21 @@ describe('orange hrm automate', () => {
 
 
 
+    })
+    it('login using invalid userid', () => {
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/')
+
+        cy.get('#txtUsername')
+            .type('Admin')
+
+        cy.get('#txtPassword')
+            .type('admin12')
+
+        cy.get('#btnLogin')
+            .click()
+            .url()
+            .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/dashboard')
     })
 
     it('login page with valid credentials', () => {
