@@ -35,6 +35,15 @@ describe('orange hrm automate', () => {
             .url()
             .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/dashboard')
     })
+    it('directly click on login', () => {
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/')
+
+        cy.get('#btnLogin')
+            .click()
+            .url()
+            .should('eq', 'https://opensource-demo.orangehrmlive.com/index.php/dashboard')
+    })
 
     it('login page with valid credentials', () => {
 
