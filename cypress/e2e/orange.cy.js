@@ -84,7 +84,7 @@ describe('orange hrm automate', () => {
             .select('CAN - Personal')
             .should('have.value', '9')
 
-        cy.get('input[id=assignleave_txtFromDate]')
+        cy.get('input[id=assignleave_txtFromDate]')   
             .click()
         cy.get('select[class=ui-datepicker-year]')
             .select('1999')
